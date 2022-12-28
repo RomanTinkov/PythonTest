@@ -1,12 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import os
 import sys
 
 app = Flask(__name__)
 
-root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates", "dynamic-stable-2.263.2")
+root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
 
-@app.route('/<path:path>', methods=['GET'])
+@app.route('/download/<path:path>', methods=['GET'])
 def static_proxy(path):
     return send_from_directory(root, path)
 
